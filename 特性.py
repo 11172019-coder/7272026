@@ -30,3 +30,37 @@ else:
 
 
 
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield(b)
+        a =b
+        b =a+b
+        n = n + 1
+    return 'done'
+f =fib(9)
+print (f)
+for i in f:
+    print (i)
+
+
+
+
+def tringles(max):
+    n=1
+    while n <max:
+        l1 =list(range(1,n+1))
+        l2 =list(range(n-1,0,-1))
+        yield (l1+l2)
+        n=n+1
+    return(None)
+g = tringles(9)
+for s in g:
+    print (s)
+
+
+
+
+
+
+
