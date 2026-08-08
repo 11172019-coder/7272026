@@ -102,4 +102,76 @@ L2 = sorted(L, key=by_score)
 print(L2)
 
 
+
+def lazy_sum(*args):
+    def sum():
+        ax = 0
+        for n in args:
+            ax = ax + n
+        return ax
+    return sum #  返回sum函数
+f = lazy_sum(1,3,5,7)
+print (f) 
+print (f()) 
+
+
+
+def count():
+    fs = []
+    for i in range(1, 4):
+        def f():
+             return i*i 
+        fs.append(f) #  储存结果含有变量i，直接调用结果会发生变化。
+    return fs
+f1,f2,f3= count()
+print(f1())
+
+
+
+def count():
+    fs = []
+    for i in range(1, 4):
+        def f(j):
+            def g():    
+                return j*j
+            return g
+        fs.append(f(i))# f(i)立刻被执行，因此i的当前值被传入f()
+    return fs
+fs = count()
+print (fs[1]())
+
+
+
+def createCounter():
+    x=0
+    def counter():
+        nonlocal x
+        x = x+1
+        return x
+    return counter
+
+
+# 测试:
+counterA = createCounter()
+print(counterA(), counterA(), counterA(), counterA(), counterA()) # 1 2 3 4 5
+counterB = createCounter()
+if [counterB(), counterB(), counterB(), counterB()] == [1, 2, 3, 4]:
+    print('测试通过!')
+else:
+    print('测试失败!')
+
+
+
+def is_odd(n):
+    return n % 2 == 1
+
+L = list(filter(is_odd, range(1, 20)))
+
+print(L)
+
+L = list(filter(lambda n: n%2==1, range(1, 20)))
+
+print(L)
 '''
+
+
